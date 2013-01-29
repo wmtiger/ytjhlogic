@@ -51,6 +51,47 @@ package com.ytjh.net
 			separator = separ;
 		}
 		/**
+		 * 发送后端消息
+		 * @param	action		命令
+		 * @param	okFun		成功后回调函数
+		 * @param	okParam		成功后回调函数是否需要xml参数
+		 * @param	obj			发送消息时的对象
+		 * @param	noFun		失败后的回调
+		 * @param	noParam		失败后回调函数是否需要xml参数
+		 */
+		public function sendReqInfo(action:String, okFun:Function = null, okParam:Boolean = true, 
+				obj:Object = null, noFun:Function = null, noParam:Boolean = false):void
+		{
+			var req:HttpRequest = new HttpRequest();
+			req.action = action.toLocaleLowerCase();
+			req.data = obj;
+			req.callback = function (xml:XML):void 
+			{
+				Log.info(req.action+"->xml\n" + xml);
+				if (xml.state + "" == "1") 
+				{
+					if (okFun != null) 
+					{
+						if (okParam) 
+							okFun(xml);
+						else
+							okFun();
+					}
+				}
+				else
+				{
+					if (noFun != null) 
+					{
+						if (noParam) 
+							noFun(xml);
+						else
+							noFun();
+					}
+				}
+			}
+			sendRequest(req);
+		}
+		/**
 		 * 发送请求
 		 */ 
 		public function sendRequest(req:HttpRequest):void
