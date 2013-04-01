@@ -15,7 +15,7 @@ package com.ytjh.vo
 		
 		public function FollowVO() 
 		{
-			skills = new Vector.<SkillVO>();
+			_skills = new Vector.<SkillVO>();
 			_normalSkills = new Vector.<SkillVO>();
 			_armSkills = new Vector.<SkillVO>();
 		}
