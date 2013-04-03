@@ -1,6 +1,7 @@
 package com.ytjh.base 
 {
 	import com.wm.base.IDispose;
+	import flash.events.EventDispatcher;
 	
 	import flash.utils.describeType;
 
@@ -8,7 +9,7 @@ package com.ytjh.base
 	 * 数据基类
 	 * @author wmtiger
 	 */
-	public class BaseVO implements IDispose
+	public class BaseVO extends EventDispatcher implements IDispose
 	{
 		public var id:String = "";
 		public var name:String = "";
